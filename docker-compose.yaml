@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  proxy-crawler:
+    image: "itmeng/proxy-crawler:v0.1.0"
+    container_name: proxy-crawler
+    links:
+      - redis
+    environment:
+      - "DB_CONN=redis://@proxy-redis:6379/0"
+      - "HTTP_URL=http://httpbin.org"
+      - "HTTPS_URL=https://www.qq.com"
+
+  proxy-redis:
+    image: "redis"
+    container_name: proxy-redis
+    ports:
+      - "6379:6379"
