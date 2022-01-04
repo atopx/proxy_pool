@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   proxy-crawler:
-    image: "itmeng/proxy-app:v0.1.0"
+    image: "itmeng2018/proxy-app:v0.1.0"
     container_name: proxy-crawler
     links:
       - proxy-redis
@@ -13,7 +13,7 @@ services:
       - "HTTPS_URL=https://www.qq.com"
 
   proxy-server:
-    image: "itmeng/proxy-app:v0.1.0"
+    image: "itmeng2018/proxy-app:v0.1.0"
     container_name: proxy-server
     links:
       - proxy-redis
