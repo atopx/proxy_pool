@@ -9,17 +9,11 @@ from handler.proxy import ProxyHandler
 
 
 class DoValidator(object):
-    """ 执行校验 """
+    # 校验器
 
     @classmethod
     def validator(cls, proxy):
-        """
-        校验入口
-        Args:
-            proxy: Proxy Object
-        Returns:
-            Proxy Object
-        """
+        # 校验入口
         http_r = cls.http_validator(proxy)
         https_r = False if not http_r else cls.https_validator(proxy)
 
@@ -57,7 +51,7 @@ class DoValidator(object):
 
 
 class _ThreadChecker(Thread):
-    """ 多线程检测 """
+    # 多线程检测
 
     def __init__(self, work_type, target_queue, thread_name):
         Thread.__init__(self, name=thread_name)
@@ -108,12 +102,7 @@ class _ThreadChecker(Thread):
 
 
 def checker(tp, queue):
-    """
-    run Proxy ThreadChecker
-    :param tp: raw/use
-    :param queue: Proxy Queue
-    :return:
-    """
+    # 多线程校验
     thread_list = list()
     for index in range(20):
         thread_list.append(_ThreadChecker(tp, queue, "thread_%s" % str(index).zfill(2)))

@@ -1,7 +1,5 @@
 class Singleton(type):
-    """
-    Singleton Metaclass
-    """
+    # Singleton Metaclass
 
     _inst = {}
 

@@ -20,10 +20,7 @@ class HttpRequest(object):
 
     @property
     def user_agent(self):
-        """
-        return an User-Agent at random
-        :return:
-        """
+        # return an User-Agent at random
         ua_list = [
             'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/30.0.1599.101',
             'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/38.0.2125.122',
@@ -38,25 +35,14 @@ class HttpRequest(object):
 
     @property
     def header(self):
-        """
-        basic header
-        :return:
-        """
+        # http request basic header
         return {'User-Agent': self.user_agent,
                 'Accept': '*/*',
                 'Connection': 'keep-alive',
                 'Accept-Language': 'zh-CN,zh;q=0.8'}
 
     def get(self, url, header=None, retry_time=3, retry_interval=5, timeout=5, *args, **kwargs):
-        """
-        get method
-        :param url: target url
-        :param header: headers
-        :param retry_time: retry time
-        :param retry_interval: retry interval
-        :param timeout: network timeout
-        :return:
-        """
+        # http request get method
         headers = self.header
         if header and isinstance(header, dict):
             headers.update(header)

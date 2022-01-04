@@ -30,52 +30,52 @@ class Proxy(object):
 
     @property
     def proxy(self):
-        """ 代理 ip:port """
+        # 代理 ip:port
         return self._proxy
 
     @property
     def fail_count(self):
-        """ 检测失败次数 """
+        # 检测失败次数
         return self._fail_count
 
     @property
     def region(self):
-        """ 地理位置(国家/城市) """
+        # 地理位置(国家/城市)
         return self._region
 
     @property
     def anonymous(self):
-        """ 匿名 """
+        # 匿名
         return self._anonymous
 
     @property
     def source(self):
-        """ 代理来源 """
+        # 代理来源
         return '/'.join(self._source)
 
     @property
     def check_count(self):
-        """ 代理检测次数 """
+        # 代理检测次数
         return self._check_count
 
     @property
     def last_status(self):
-        """ 最后一次检测结果  True -> 可用; False -> 不可用"""
+        # 最后一次检测结果  True -> 可用; False -> 不可用
         return self._last_status
 
     @property
     def last_time(self):
-        """ 最后一次检测时间 """
+        # 最后一次检测时间
         return self._last_time
 
     @property
     def https(self):
-        """ 是否支持https """
+        # 是否支持https
         return self._https
 
     @property
     def to_dict(self):
-        """ 属性字典 """
+        # 属性字典
         return {"proxy": self.proxy,
                 "https": self.https,
                 "fail_count": self.fail_count,
@@ -88,7 +88,7 @@ class Proxy(object):
 
     @property
     def to_json(self):
-        """ 属性json格式 """
+        # 属性json格式
         return json.dumps(self.to_dict, ensure_ascii=False)
 
     @fail_count.setter

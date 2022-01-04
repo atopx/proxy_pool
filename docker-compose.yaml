@@ -4,6 +4,7 @@ services:
   proxy-crawler:
     image: "itmeng2018/proxy-app:v0.1.0"
     container_name: proxy-crawler
+    restart: always
     links:
       - proxy-redis
     entrypoint: python crawler.py
@@ -15,6 +16,7 @@ services:
   proxy-server:
     image: "itmeng2018/proxy-app:v0.1.0"
     container_name: proxy-server
+    restart: always
     links:
       - proxy-redis
     entrypoint: python server.py
@@ -25,6 +27,7 @@ services:
 
   proxy-redis:
     image: "redis"
+    restart: always
     container_name: proxy-redis
     ports:
       - "6379:6379"

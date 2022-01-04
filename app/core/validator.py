@@ -36,19 +36,17 @@ class ProxyValidator(with_metaclass(Singleton)):
 
 
 @ProxyValidator.add_pre_validator
-def format_validator(proxy):
-    """检查代理格式"""
+def format_validator(proxy) -> bool:
+    # 检查代理格式
     verify_regex = r"\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}:\d{1,5}"
     _proxy = findall(verify_regex, proxy)
     return True if len(_proxy) == 1 and _proxy[0] == proxy else False
 
 
 @ProxyValidator.add_http_validator
-def http_time_out_validator(proxy):
-    """ http检测超时 """
-
+def http_time_out_validator(proxy) -> bool:
+    # http检测超时
     proxies = {"http": "http://{proxy}".format(proxy=proxy), "https": "https://{proxy}".format(proxy=proxy)}
-
     try:
         r = head(conf.http_url, headers=HEADER, proxies=proxies, timeout=conf.verify_timeout)
         return True if r.status_code == 200 else False
@@ -57,9 +55,8 @@ def http_time_out_validator(proxy):
 
 
 @ProxyValidator.add_https_validator
-def https_time_out_validator(proxy):
-    """https检测超时"""
-
+def https_time_out_validator(proxy) -> bool:
+    # https检测超时
     proxies = {"http": "http://{proxy}".format(proxy=proxy), "https": "https://{proxy}".format(proxy=proxy)}
     try:
         r = head(conf.https_url, headers=HEADER, proxies=proxies, timeout=conf.verify_timeout, verify=False)
@@ -69,7 +66,7 @@ def https_time_out_validator(proxy):
 
 
 @ProxyValidator.add_http_validator
-def custom_validator_example(proxy):
-    """自定义validator函数，校验代理是否可用, 返回True/False"""
+def custom_validator_example(proxy) -> bool:
+    # TODO 此处可以自定义validator函数，校验代理是否可用, 返回True/False
     print(f"custom validator: {proxy}")
     return True

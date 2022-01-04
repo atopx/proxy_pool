@@ -26,9 +26,7 @@ if not os.path.exists(LOG_PATH):
 
 
 class Logger(logging.Logger):
-    """
-    LogHandler
-    """
+    # log handler
 
     def __init__(self, name, level=DEBUG, stream=True, file=False):
         self.name = name
@@ -41,11 +39,7 @@ class Logger(logging.Logger):
                 self.__setFileHandler__()
 
     def __setFileHandler__(self, level=None):
-        """
-        set file handler
-        :param level:
-        :return:
-        """
+        # set file logger
         file_name = os.path.join(LOG_PATH, '{name}.log'.format(name=self.name))
         # 设置日志回滚, 保存在log目录, 一天保存一个文件, 保留15天
         file_handler = TimedRotatingFileHandler(filename=file_name, when='D', interval=1, backupCount=15)
@@ -61,11 +55,7 @@ class Logger(logging.Logger):
         self.addHandler(file_handler)
 
     def __setStreamHandler__(self, level=None):
-        """
-        set stream handler
-        :param level:
-        :return:
-        """
+        # set stream logger
         stream_handler = logging.StreamHandler()
         formatter = logging.Formatter('%(asctime)s %(filename)s[line:%(lineno)d] %(levelname)s %(message)s')
         stream_handler.setFormatter(formatter)

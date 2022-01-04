@@ -5,16 +5,11 @@ from util.http import HttpRequest
 
 
 class ProxyFetcher(object):
-    """
-    proxy getter
-    """
+    # proxy crawler
 
     @staticmethod
     def free_proxy01():
-        """
-        米扑代理 https://proxy.mimvp.com/
-        :return:
-        """
+        # 米扑代理 https://proxy.mimvp.com/
         url_list = [
             'https://proxy.mimvp.com/freeopen?proxy=in_hp',
             'https://proxy.mimvp.com/freeopen?proxy=out_hp'
@@ -36,10 +31,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy02():
-        """
-        代理66 http://www.66ip.cn/
-        :return:
-        """
+        # 代理66 http://www.66ip.cn/
         url = "http://www.66ip.cn/mo.php"
 
         resp = HttpRequest().get(url, timeout=10)
@@ -49,7 +41,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy03():
-        """ 开心代理 """
+        # 开心代理
         target_urls = ["http://www.kxdaili.com/dailiip.html", "http://www.kxdaili.com/dailiip/2/1.html"]
         for url in target_urls:
             tree = HttpRequest().get(url).tree
@@ -60,7 +52,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy04():
-        """ 蝶鸟IP """
+        # 蝶鸟IP
         url = "https://www.dieniao.com/FreeProxy.html"
         tree = HttpRequest().get(url, verify=False).tree
         for li in tree.xpath("//div[@class='free-main col-lg-12 col-md-12 col-sm-12 col-xs-12']/ul/li")[1:]:
@@ -70,7 +62,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy05(page_count=1):
-        """ 快代理 https://www.kuaidaili.com """
+        # 快代理 https://www.kuaidaili.com
         url_pattern = [
             'https://www.kuaidaili.com/free/inha/{}/',
             'https://www.kuaidaili.com/free/intr/{}/'
@@ -89,7 +81,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy06():
-        """ PROXY11 https://proxy11.com """
+        # PROXY11 https://proxy11.com
         url = "https://proxy11.com/api/demoweb/proxy.json?country=hk&speed=2000"
         try:
             resp_json = HttpRequest().get(url).json
@@ -100,7 +92,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy07():
-        """ 云代理 """
+        # 云代理
         urls = ['http://www.ip3366.net/free/?stype=1', "http://www.ip3366.net/free/?stype=2"]
         for url in urls:
             r = HttpRequest().get(url, timeout=10)
@@ -110,7 +102,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy08():
-        """ 小幻代理 """
+        # 小幻代理
         urls = ['https://ip.ihuan.me/address/5Lit5Zu9.html']
         for url in urls:
             r = HttpRequest().get(url, timeout=10)
@@ -120,7 +112,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy09(page_count=1):
-        """ 免费代理库 """
+        # 免费代理库
         for i in range(1, page_count + 1):
             url = 'http://ip.jiangxianli.com/?country=中国&page={}'.format(i)
             html_tree = HttpRequest().get(url).tree
@@ -131,7 +123,7 @@ class ProxyFetcher(object):
 
     @staticmethod
     def free_proxy10():
-        """ 89免费代理 """
+        # 89免费代理
         matcher = re.compile(
             r'<td.*?>[\s\S]*?(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3})[\s\S]*?</td>[\s\S]*?<td.*?>[\s\S]*?(\d+)[\s\S]*?</td>'
         )

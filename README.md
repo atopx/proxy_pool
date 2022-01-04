@@ -7,6 +7,10 @@
  - app/crawler: 采集器[`定时采集`, `轮训探活`]
  - app/server: api服务
 
+## 自定义代理验证函数
+> vim app/core/validator.py +69
+
+修改函数`custom_validator_example(proxy) -> bool`
 
 # 使用
 > 安装`docker`, `docker-compose`
@@ -53,3 +57,4 @@ services:
 docker-compose pull
 docker-compose up -d
 ```
+
