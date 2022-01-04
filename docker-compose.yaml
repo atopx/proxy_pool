@@ -2,14 +2,26 @@ version: '3.7'
 
 services:
   proxy-crawler:
-    image: "itmeng/proxy-crawler:v0.1.0"
+    image: "itmeng/proxy-app:v0.1.0"
     container_name: proxy-crawler
     links:
-      - redis
+      - proxy-redis
+    entrypoint: python crawler.py
     environment:
       - "DB_CONN=redis://@proxy-redis:6379/0"
       - "HTTP_URL=http://httpbin.org"
       - "HTTPS_URL=https://www.qq.com"
+
+  proxy-server:
+    image: "itmeng/proxy-app:v0.1.0"
+    container_name: proxy-server
+    links:
+      - proxy-redis
+    entrypoint: python server.py
+    environment:
+      - "DB_CONN=redis://@proxy-redis:6379/0"
+    ports:
+      - "5000:5000"
 
   proxy-redis:
     image: "redis"
